@@ -1,0 +1,95 @@
+// Progress component variables
+$progress-generate-scheme: true;
+
+/* Progress component prototype */
+progress.progress {
+	background-color: $border-bg-color;
+	border-radius: $border-radius;
+	border: none;
+	display: block;
+	height: 0.75em;
+	margin-bottom: $element-margin;
+	width: 100%;
+
+	&::-webkit-progress-bar {
+		background: $border-bg-color;
+	}
+
+	&::-webkit-progress-value {
+		background: $link-color;
+		border-radius: $border-radius;
+	}
+
+	&::-moz-progress-bar {
+		background: $link-color;
+		border-radius: $border-radius;
+	}
+
+	&::-ms-fill {
+		background: $link-color;
+		border-radius: $border-radius;
+		border: none;
+	}
+}
+
+/* Progress component extensions */
+progress.progress {
+
+	// Small progress
+	&.progress--small {
+		height: 0.5em;
+	}
+
+	// Large progress
+	&.progress--large {
+		height: 1em;
+	}
+
+	// Scheme colored progresses
+	@each $scheme in map-keys($schemes) {
+		@if (map-val($schemes, $scheme, generate-progress)) {
+			&.progress--#{$scheme} {
+
+				&::-webkit-progress-value {
+					background: map-val($schemes, $scheme, bg-color);
+				}
+
+				&::-moz-progress-bar {
+					background: map-val($schemes, $scheme, bg-color);
+				}
+
+				&::-ms-fill {
+					background: map-val($schemes, $scheme, bg-color);
+				}
+			}
+		}
+	}
+}
+
+/* Progress component scheme modifications */
+@each $scheme in map-keys($schemes) {
+	@if (map-val($schemes, $scheme, generate-scheme) and $progress-generate-scheme) {
+		&.scheme--#{$scheme} {
+
+			progress.progress {
+				background-color: map-val($schemes, $scheme, border-bg-color);
+
+				&::-webkit-progress-bar {
+					background: map-val($schemes, $scheme, border-bg-color);
+				}
+
+				&::-webkit-progress-value {
+					background: map-val($schemes, $scheme, link-color);
+				}
+
+				&::-moz-progress-bar {
+					background: map-val($schemes, $scheme, link-color);
+				}
+
+				&::-ms-fill {
+					background: map-val($schemes, $scheme, link-color);
+				}
+			}
+		}
+	}
+}
