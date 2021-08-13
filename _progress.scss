@@ -34,36 +34,6 @@ progress.progress {
 
 /* Progress component extensions */
 progress.progress {
-
-	// Small progress
-	&.progress--small {
-		height: 0.5em;
-	}
-
-	// Large progress
-	&.progress--large {
-		height: 1em;
-	}
-
-	// Scheme colored progresses
-	@each $scheme in map-keys($schemes) {
-		@if (map-val($schemes, $scheme, generate-progress)) {
-			&.progress--#{$scheme} {
-
-				&::-webkit-progress-value {
-					background: map-val($schemes, $scheme, bg-color);
-				}
-
-				&::-moz-progress-bar {
-					background: map-val($schemes, $scheme, bg-color);
-				}
-
-				&::-ms-fill {
-					background: map-val($schemes, $scheme, bg-color);
-				}
-			}
-		}
-	}
 }
 
 /* Progress component scheme modifications */
