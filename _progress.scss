@@ -39,7 +39,7 @@ progress.progress {
 /* Progress component scheme modifications */
 @each $scheme in map-keys($schemes) {
 	@if (map-val($schemes, $scheme, generate-scheme) and $progress-generate-scheme) {
-		&.scheme--#{$scheme} {
+		.scheme--#{$scheme} {
 
 			progress.progress {
 				background-color: map-val($schemes, $scheme, border-bg-color);
